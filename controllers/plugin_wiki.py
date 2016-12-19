@@ -25,6 +25,9 @@ def page():
     """
     shows a page
     """
+    if '/plugin_wiki/page/phc' in request.url and not plugin_wiki_editor:
+        redirect(URL('default', 'index'))
+
     slug = request.args(0) or 'index'
     w = db.plugin_wiki_page
     page = w(slug=slug)
